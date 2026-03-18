@@ -1,3 +1,4 @@
+
 <template>
   <div class="app" :class="{ dark: isDark }">
     <!-- 顶部 -->
@@ -70,6 +71,7 @@
 </template>
 
 <script setup>
+import { Analytics } from "@vercel/analytics/next"
 import { ref } from 'vue'
 
 // 基础状态
