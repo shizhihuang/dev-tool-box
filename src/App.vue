@@ -71,7 +71,6 @@
 </template>
 
 <script setup>
-import { Analytics } from "@vercel/analytics/next"
 import { ref } from 'vue'
 
 // 基础状态
