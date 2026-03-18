@@ -249,6 +249,7 @@ html, body {
   width: 100%;
   height: calc(100vh - 140px); /* 减去顶部+Tab栏高度，占满剩余屏幕 */
   padding: 0 15px; /* 仅这里加左右间距，内容不贴边 */
+  overflow: hidden; /* 防止子元素把整体高度撑大，只在内部滚动 */
 }
 
 /* 左侧输入框容器 - 占50%宽度 */
@@ -258,6 +259,7 @@ html, body {
   border-radius: 8px;
   border: 1px solid #ddd;
   overflow: hidden;
+  min-height: 0; /* 允许在父 flex 容器中被约束高度，内部滚动 */
 }
 .app.dark .input-wrap {
   border-color: #444;
@@ -274,6 +276,7 @@ textarea {
   font-family: 'Courier New', monospace;
   resize: none;
   background: #f8f9fa;
+  color: #2c3e50;
 }
 .app.dark textarea {
   background: #2c2c2c;
@@ -305,6 +308,7 @@ textarea {
   border: 1px solid #ddd;
   padding: 10px;
   background: #f8f9fa;
+  min-height: 0; /* 允许内部 .result-content 自己滚动，而不是撑开整体 */
 }
 .app.dark .output-wrap {
   border-color: #444;
@@ -343,7 +347,12 @@ textarea {
   overflow: auto;
   font-family: 'Courier New', monospace;
   font-size: 0.95rem;
-  white-space: pre;
+  white-space: pre-wrap; /* 保留格式但允许自动换行 */
+  word-break: break-all; /* 长的Base64/URL字符串也会换行 */
+  color: #2c3e50;
+}
+.app.dark .result-content {
+  color: #f8f8f8;
 }
 
 /* JSON高亮样式 */
