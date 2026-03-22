@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fasttoolkit.dev/sitemap.xml

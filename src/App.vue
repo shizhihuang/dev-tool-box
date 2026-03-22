@@ -11,9 +11,9 @@
 
     <!-- Tab -->
     <div class="tabs">
-      <button :class="{ active: tab === 'json' }" @click="tab = 'json'">JSON Formatter</button>
-      <button :class="{ active: tab === 'base64' }" @click="tab = 'base64'">Base64 Encode/Decode</button>
-      <button :class="{ active: tab === 'url' }" @click="tab = 'url'">URL Encode/Decode</button>
+      <button :class="{ active: tab === 'json' }" @click="setTab('json')">JSON Formatter</button>
+      <button :class="{ active: tab === 'base64' }" @click="setTab('base64')">Base64 Encode/Decode</button>
+      <button :class="{ active: tab === 'url' }" @click="setTab('url')">URL Encode/Decode</button>
     </div>
 
     <!-- JSON 工具 -->
@@ -26,7 +26,7 @@
       <!-- 右侧操作+结果 -->
       <div class="output-wrap">
         <div class="action-bar">
-          <button class="action-btn copy-btn" @click="copy(jsonOutputText)">Copy Result</button>
+          <button class="action-btn copy-btn" @click="copy(jsonOutputText, 'json')">Copy Result</button>
         </div>
         <pre v-html="jsonOutput" class="result-content"></pre>
       </div>
@@ -44,7 +44,7 @@
         <div class="action-bar">
           <button class="action-btn" @click="b64Encode">Encode</button>
           <button class="action-btn" @click="b64Decode">Decode</button>
-          <button class="action-btn copy-btn" @click="copy(b64Output)">Copy Result</button>
+          <button class="action-btn copy-btn" @click="copy(b64Output, 'base64')">Copy Result</button>
         </div>
         <pre class="result-content">{{ b64Output }}</pre>
       </div>
@@ -62,7 +62,7 @@
         <div class="action-bar">
           <button class="action-btn" @click="urlEncode">Encode</button>
           <button class="action-btn" @click="urlDecode">Decode</button>
-          <button class="action-btn copy-btn" @click="copy(urlOutput)">Copy Result</button>
+          <button class="action-btn copy-btn" @click="copy(urlOutput, 'url')">Copy Result</button>
         </div>
         <pre class="result-content">{{ urlOutput }}</pre>
       </div>
@@ -72,10 +72,15 @@
 
 <script setup>
 import { ref } from 'vue'
+import { trackTabSelect, trackToolUse, trackEvent } from './utils/analytics.js'
 
 // 基础状态
 const isDark = ref(false)
 const tab = ref('json')
+const setTab = (t) => {
+  tab.value = t
+  trackTabSelect(t)
+}
 const toggleTheme = () => {
   isDark.value = !isDark.value
 }
@@ -112,6 +117,7 @@ const b64Output = ref('')
 const b64Encode = () => {
   try {
     b64Output.value = btoa(unescape(encodeURIComponent(b64Input.value)))
+    trackToolUse('base64', 'encode')
   } catch (e) {
     b64Output.value = 'Error: Invalid input'
   }
@@ -119,6 +125,7 @@ const b64Encode = () => {
 const b64Decode = () => {
   try {
     b64Output.value = decodeURIComponent(escape(atob(b64Input.value)))
+    trackToolUse('base64', 'decode')
   } catch (e) {
     b64Output.value = 'Error: Invalid Base64 string'
   }
@@ -130,6 +137,7 @@ const urlOutput = ref('')
 const urlEncode = () => {
   try {
     urlOutput.value = encodeURIComponent(urlInput.value)
+    trackToolUse('url', 'encode')
   } catch (e) {
     urlOutput.value = 'Error: Invalid input'
   }
@@ -137,15 +145,17 @@ const urlEncode = () => {
 const urlDecode = () => {
   try {
     urlOutput.value = decodeURIComponent(urlInput.value)
+    trackToolUse('url', 'decode')
   } catch (e) {
     urlOutput.value = 'Error: Invalid URL encoded string'
   }
 }
 
 // 复制
-const copy = (text) => {
+const copy = (text, tool) => {
   if (!text || text.includes('Error') || text.includes('Invalid')) return
   navigator.clipboard.writeText(text).then(() => {
+    if (tool) trackEvent('copy', { tool })
     alert('Copied to clipboard!')
   }).catch(() => {
     alert('Copy failed, please copy manually')
