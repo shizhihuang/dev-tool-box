@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/((?!assets|_vercel|vite.svg|.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|webp|xml|txt)$).*)", "destination": "/index.html" }
+  ]
+}
