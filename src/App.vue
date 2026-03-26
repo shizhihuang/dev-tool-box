@@ -161,6 +161,10 @@ html.fasttoolkit-dark {
 }
 
 @media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+
   .header {
     height: auto;
     margin-bottom: 10px;

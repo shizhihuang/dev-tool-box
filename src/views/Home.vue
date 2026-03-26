@@ -281,14 +281,18 @@ const copy = (text, tool) => {
     height: auto;
     margin-bottom: 10px;
     padding: 0 10px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
   }
   .tabs button {
-    flex: 0 0 auto;
-    padding: 0 14px;
-    font-size: 0.85rem;
+    width: 100%;
+    padding: 0 10px;
+    font-size: 0.82rem;
+    height: 36px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .tool-layout {
@@ -330,6 +334,28 @@ const copy = (text, tool) => {
   .result-content {
     padding: 8px;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs button {
+    font-size: 0.78rem;
+  }
+
+  .tool-layout {
+    gap: 8px;
+  }
+
+  /* 让输入区略大一点，更符合使用习惯 */
+  .input-wrap {
+    flex: 1.2;
+  }
+  .output-wrap {
+    flex: 0.8;
+  }
+
+  .input-wrap, .output-wrap {
+    border-radius: 10px;
   }
 }
 </style>
