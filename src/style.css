@@ -24,9 +24,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  display: block;
+  place-items: initial;
+  min-width: 0;
   min-height: 100vh;
 }
 
@@ -60,9 +60,8 @@ button:focus-visible {
 
 #app {
 
-  margin: 0 auto;
-
-  text-align: center;
+  margin: 0;
+  text-align: left;
 }
 
 @media (prefers-color-scheme: light) {

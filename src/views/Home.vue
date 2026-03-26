@@ -135,7 +135,7 @@ const copy = (text, tool) => {
 }
 </script>
 
-<style scoped>
+<style>
 .home {
   flex: 1;
   display: flex;
@@ -163,11 +163,11 @@ const copy = (text, tool) => {
   background: #3498db;
   color: white;
 }
-:global(.app.dark) .tabs button {
+.app.dark .tabs button {
   background: #333;
   color: #f8f8f8;
 }
-:global(.app.dark) .tabs button.active {
+.app.dark .tabs button.active {
   background: #3498db;
 }
 
@@ -186,7 +186,7 @@ const copy = (text, tool) => {
   overflow: hidden;
   min-height: 0;
 }
-:global(.app.dark) .input-wrap {
+.app.dark .input-wrap {
   border-color: #444;
 }
 .input-wrap textarea {
@@ -201,7 +201,7 @@ const copy = (text, tool) => {
   background: #f8f9fa;
   color: #2c3e50;
 }
-:global(.app.dark) .input-wrap textarea {
+.app.dark .input-wrap textarea {
   background: #2c2c2c;
   color: #f8f8f8;
 }
@@ -229,7 +229,7 @@ const copy = (text, tool) => {
   background: #f8f9fa;
   min-height: 0;
 }
-:global(.app.dark) .output-wrap {
+.app.dark .output-wrap {
   border-color: #444;
   background: #2c2c2c;
 }
@@ -250,10 +250,10 @@ const copy = (text, tool) => {
 .copy-btn {
   background: #9b59b6 !important;
 }
-:global(.app.dark) .action-btn {
+.app.dark .action-btn {
   background: #27ae60;
 }
-:global(.app.dark) .copy-btn {
+.app.dark .copy-btn {
   background: #8e44ad !important;
 }
 .result-content {
@@ -266,7 +266,7 @@ const copy = (text, tool) => {
   word-break: break-all;
   color: #2c3e50;
 }
-:global(.app.dark) .result-content {
+.app.dark .result-content {
   color: #f8f8f8;
 }
 .key { color: #2980b9 !important; font-weight: bold !important; }
@@ -277,12 +277,59 @@ const copy = (text, tool) => {
 .error { color: #e74c3c !important; font-weight: bold !important; }
 
 @media (max-width: 768px) {
+  .tabs {
+    height: auto;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs button {
+    flex: 0 0 auto;
+    padding: 0 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
   .tool-layout {
     flex-direction: column;
+    gap: 10px;
+    padding: 0 10px;
   }
   .input-wrap, .output-wrap {
-    flex: none;
-    height: 50%;
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+
+  .input-wrap textarea {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .output-wrap {
+    padding: 8px;
+  }
+
+  .action-bar {
+    height: 36px;
+    gap: 8px;
+  }
+  .action-btn {
+    padding: 0 14px;
+    font-size: 0.85rem;
+  }
+
+  .clear-btn {
+    top: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  .result-content {
+    padding: 8px;
+    font-size: 0.9rem;
   }
 }
 </style>

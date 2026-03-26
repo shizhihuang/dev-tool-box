@@ -1,5 +1,12 @@
 <template>
-  <div class="app" :class="{ dark: isDark }">
+  <div
+    class="app"
+    :class="{ dark: isDark }"
+    :style="{
+      background: isDark ? '#000000' : '#ffffff',
+      color: isDark ? '#f8f8f8' : '#2c3e50',
+    }"
+  >
     <div class="header">
       <router-link to="/" class="logo">Dev Tool Box</router-link>
       <nav class="nav-links">
@@ -19,12 +26,24 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const isDark = ref(false)
+const BODY_DARK_CLASS = 'fasttoolkit-dark'
+
 const toggleTheme = () => {
   isDark.value = !isDark.value
 }
+
+onMounted(() => {
+  document.body.classList.toggle(BODY_DARK_CLASS, isDark.value)
+  document.documentElement.classList.toggle(BODY_DARK_CLASS, isDark.value)
+})
+
+watch(isDark, (v) => {
+  document.body.classList.toggle(BODY_DARK_CLASS, v)
+  document.documentElement.classList.toggle(BODY_DARK_CLASS, v)
+})
 </script>
 
 <style>
@@ -40,6 +59,22 @@ html, body {
   overflow: hidden;
 }
 
+body {
+  background: #ffffff !important;
+}
+
+body.fasttoolkit-dark {
+  background: #000000 !important;
+}
+
+html {
+  background: #ffffff !important;
+}
+
+html.fasttoolkit-dark {
+  background: #000000 !important;
+}
+
 .app {
   width: 100vw;
   height: 100vh;
@@ -47,13 +82,13 @@ html, body {
   flex-direction: column;
   padding: 15px;
   font-family: 'Arial', sans-serif;
-  background: #ffffff;
+  background: #ffffff !important;
   color: #2c3e50;
   transition: background 0.3s, color 0.3s;
 }
 
 .app.dark {
-  background: #1a1a1a;
+  background: #000 !important;
   color: #f8f8f8;
 }
 
@@ -122,5 +157,34 @@ html, body {
   flex-direction: column;
   min-height: 0;
   overflow: auto;
+  background: transparent;
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: auto;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+  }
+
+  .theme-btn {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
 }
 </style>
