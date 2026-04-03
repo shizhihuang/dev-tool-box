@@ -4,6 +4,16 @@ export function trackEvent(eventName, params = {}) {
   }
 }
 
+/** SPA navigation: call after updating document.title */
+export function trackPageView(path) {
+  if (typeof window === 'undefined' || !window.gtag) return
+  window.gtag('event', 'page_view', {
+    page_path: path,
+    page_title: document.title,
+    page_location: window.location.href,
+  })
+}
+
 export function trackToolUse(tool, action) {
   trackEvent('tool_use', {
     tool,

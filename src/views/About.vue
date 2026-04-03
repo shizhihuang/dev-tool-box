@@ -13,9 +13,16 @@
     <section>
       <h2>Available Tools</h2>
       <ul>
-        <li><strong>JSON Formatter</strong> – Format and validate JSON with syntax highlighting. Paste messy JSON and get clean, readable output.</li>
-        <li><strong>Base64 Encode/Decode</strong> – Encode text to Base64 or decode Base64 back to plain text.</li>
-        <li><strong>URL Encode/Decode</strong> – Encode or decode URL-encoded strings for use in web development.</li>
+        <li><strong>JSON Formatter</strong> – Format, minify, validate, sort keys, and convert JSON to CSV.</li>
+        <li><strong>YAML ↔ JSON</strong> – Convert between YAML and JSON for configs and APIs.</li>
+        <li><strong>CSV tools</strong> – Align columns, minify, and convert between CSV and JSON.</li>
+        <li><strong>Markdown Preview</strong> – Live preview with safe rendering (raw HTML disabled).</li>
+        <li><strong>QR Code Generator</strong> – Create QR codes from text or URLs; download PNG.</li>
+        <li><strong>Timestamp Converter</strong> – Unix seconds/milliseconds, ISO, and local time.</li>
+        <li><strong>Image → Base64</strong> – Data URLs and raw Base64 from images, locally in the browser.</li>
+        <li><strong>Base64 (text)</strong> – Encode or decode UTF-8 text as Base64.</li>
+        <li><strong>URL Encode/Decode</strong> – Encode, decode, and parse URLs.</li>
+        <li><strong>Regex Tester</strong> – Match and replace previews with custom flags.</li>
       </ul>
     </section>
 
