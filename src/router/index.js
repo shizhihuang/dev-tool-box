@@ -22,8 +22,8 @@ const routes = [
     component: ToolIndex,
     meta: {
       seo: seo(
-        'Fast Toolkit — Free Online Developer Tools',
-        'Free browser-based developer tools: JSON, YAML, CSV, Markdown, QR codes, timestamps, Base64, URL encoding, and regex. Private and instant.',
+        'Fast Toolkit — Privacy-First Dev Utilities | JSON, YAML, CSV & More',
+        'Built for developers worldwide: JSON, XML, YAML, CSV, Markdown, QR codes, timestamps, Base64, URL, regex, HTML entities, UUID, number bases & color tools — all in your browser. No sign-up, no uploads; your input never hits our servers.',
       ),
     },
   },
@@ -134,6 +134,61 @@ const routes = [
       seo: seo(
         'Regex Tester Online | Fast Toolkit',
         'Test JavaScript regular expressions: view matches and replace previews with custom flags.',
+      ),
+    },
+  },
+  {
+    path: '/xml-tools',
+    name: 'XmlTools',
+    component: () => import('../views/XmlTool.vue'),
+    meta: {
+      seo: seo(
+        'XML Formatter & XML to JSON | Fast Toolkit',
+        'Pretty-print or minify XML and convert XML documents to JSON in your browser. Private, no upload.',
+      ),
+    },
+  },
+  {
+    path: '/html-entities',
+    name: 'HtmlEntities',
+    component: () => import('../views/HtmlEntitiesTool.vue'),
+    meta: {
+      seo: seo(
+        'HTML Entity Escape & Unescape | Fast Toolkit',
+        'Escape special HTML characters or decode named and numeric entities. Runs locally in the browser.',
+      ),
+    },
+  },
+  {
+    path: '/uuid-generator',
+    name: 'UuidGenerator',
+    component: () => import('../views/UuidTool.vue'),
+    meta: {
+      seo: seo(
+        'UUID v4 Generator | Fast Toolkit',
+        'Generate RFC 4122 version 4 UUIDs in bulk. Uses Web Crypto when available. No server round-trip.',
+      ),
+    },
+  },
+  {
+    path: '/number-base-converter',
+    name: 'NumberBaseConverter',
+    component: () => import('../views/NumberBaseTool.vue'),
+    meta: {
+      seo: seo(
+        'Number Base Converter (2–36) | Fast Toolkit',
+        'Convert integers between binary, decimal, hex, and any base 2–36 with BigInt precision. Client-side only.',
+      ),
+    },
+  },
+  {
+    path: '/color-picker',
+    name: 'ColorPicker',
+    component: () => import('../views/ColorPickerTool.vue'),
+    meta: {
+      seo: seo(
+        'Color Picker — HEX, RGB & HSL | Fast Toolkit',
+        'Pick colors and copy HEX, rgb(), and hsl() values for CSS. All processing happens in your browser.',
       ),
     },
   },

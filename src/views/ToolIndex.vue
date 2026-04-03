@@ -1,9 +1,10 @@
 <template>
   <div class="tool-index">
     <header class="hero">
-      <h1>Developer tools</h1>
+      <h1>Privacy-first dev utilities for global teams</h1>
       <p class="lead">
-        Free, fast, and private: everything runs in your browser. Pick a tool below.
+        JSON, YAML, CSV, Markdown, QR, timestamps, encoding &amp; regex — all executed locally in your browser.
+        No accounts, no uploads: your payloads stay on your machine.
       </p>
     </header>
     <section class="grid" aria-label="All tools">
@@ -18,6 +19,7 @@
 <script setup>
 const tools = [
   { to: '/json-formatter', title: 'JSON Formatter', blurb: 'Format, minify, validate, sort keys, JSON → CSV.' },
+  { to: '/xml-tools', title: 'XML tools', blurb: 'Format, minify, XML → JSON.' },
   { to: '/yaml-json', title: 'YAML ↔ JSON', blurb: 'Convert YAML configs to JSON and back.' },
   { to: '/csv-tools', title: 'CSV tools', blurb: 'Align columns, minify, CSV ↔ JSON.' },
   { to: '/markdown-preview', title: 'Markdown preview', blurb: 'Live preview with safe rendering.' },
@@ -27,6 +29,10 @@ const tools = [
   { to: '/base64', title: 'Base64 text', blurb: 'Encode and decode text as Base64.' },
   { to: '/url-encode-decode', title: 'URL encode/decode', blurb: 'Encode, decode, and parse URLs.' },
   { to: '/regex-tester', title: 'Regex tester', blurb: 'Match and replace preview.' },
+  { to: '/html-entities', title: 'HTML entities', blurb: 'Escape and unescape HTML entities.' },
+  { to: '/uuid-generator', title: 'UUID generator', blurb: 'Batch UUID v4 with Web Crypto.' },
+  { to: '/number-base-converter', title: 'Number bases', blurb: 'Convert integers between bases 2–36 (BigInt).' },
+  { to: '/color-picker', title: 'Color picker', blurb: 'HEX, rgb(), hsl() for CSS.' },
 ]
 </script>
 

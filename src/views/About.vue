@@ -14,6 +14,7 @@
       <h2>Available Tools</h2>
       <ul>
         <li><strong>JSON Formatter</strong> – Format, minify, validate, sort keys, and convert JSON to CSV.</li>
+        <li><strong>XML Tools</strong> – Format, minify XML, and convert XML to JSON.</li>
         <li><strong>YAML ↔ JSON</strong> – Convert between YAML and JSON for configs and APIs.</li>
         <li><strong>CSV tools</strong> – Align columns, minify, and convert between CSV and JSON.</li>
         <li><strong>Markdown Preview</strong> – Live preview with safe rendering (raw HTML disabled).</li>
@@ -23,6 +24,10 @@
         <li><strong>Base64 (text)</strong> – Encode or decode UTF-8 text as Base64.</li>
         <li><strong>URL Encode/Decode</strong> – Encode, decode, and parse URLs.</li>
         <li><strong>Regex Tester</strong> – Match and replace previews with custom flags.</li>
+        <li><strong>HTML Entities</strong> – Escape special characters or decode entities.</li>
+        <li><strong>UUID Generator</strong> – Batch-generate version 4 UUIDs (Web Crypto when available).</li>
+        <li><strong>Number Base Converter</strong> – Convert integers between bases 2–36 with BigInt.</li>
+        <li><strong>Color Picker</strong> – Pick colors and copy HEX, rgb(), and hsl() for CSS.</li>
       </ul>
     </section>
 
