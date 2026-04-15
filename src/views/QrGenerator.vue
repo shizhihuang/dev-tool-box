@@ -21,10 +21,50 @@
         </div>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>QR Code</h2>
-      <p>Creates a PNG data URL locally. Longer text may require a denser QR version.</p>
-    </div>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About this QR code generator</h2>
+      <p>
+        QR codes bridge physical and digital experiences—event badges, Wi-Fi setup cards, marketing flyers, or factory labels.
+        This generator renders a PNG data URL entirely in your browser so you can iterate on payload length, download the bitmap,
+        and drop it into design tools without installing native apps.
+      </p>
+      <p>
+        QR versions scale automatically with the amount of data. Very long strings increase module density, which may require
+        higher print quality for reliable scans. Test printed codes with multiple devices before large campaigns.
+      </p>
+
+      <h2>Recommended scenarios</h2>
+      <ul>
+        <li>Encoding HTTPS URLs for storefront signage.</li>
+        <li>Embedding short JSON payloads for internal tooling prototypes.</li>
+        <li>Generating one-off codes for staging environments where email is unavailable.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Type or paste the text or URL you want encoded.</li>
+        <li>Click <strong>Generate</strong> to build a PNG preview.</li>
+        <li>Use <strong>Download PNG</strong> when the preview looks correct.</li>
+        <li>Clear the textarea between customer demos to avoid leaking prior payloads.</li>
+      </ol>
+
+      <h2>Privacy</h2>
+      <p>
+        The QR library executes locally. No QR payload is transmitted to Fast Toolkit servers as part of the generation step.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Can I customize colors?</dt>
+        <dd>This UI uses fixed dark-on-light colors for maximum contrast. Adjust in source if you need branded palettes.</dd>
+        <dt>Does it support Wi-Fi QR strings?</dt>
+        <dd>Yes, paste the full <code>WIFI:</code> schema string and generate like any other text.</dd>
+        <dt>Why did generation fail?</dt>
+        <dd>Extremely large inputs or unsupported characters may exceed library limits. Shorten the payload or split data.</dd>
+        <dt>Is there analytics on the QR content?</dt>
+        <dd>No. Only your normal site analytics run; the QR text itself is not uploaded by this tool.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 
@@ -79,7 +119,6 @@ const downloadPng = () => {
   display: flex;
   gap: 15px;
   flex: 1;
-  min-height: 0;
   padding: 0 15px;
 }
 

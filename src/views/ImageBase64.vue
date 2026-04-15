@@ -22,10 +22,50 @@
         <textarea class="result-text" readonly :value="dataUrl" placeholder="Data URL will appear here..."></textarea>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>Privacy</h2>
-      <p>Images are read only inside your browser; nothing is uploaded. Very large files may be slow or hit memory limits.</p>
-    </div>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About image to Base64</h2>
+      <p>
+        Data URLs embed binary file bytes directly inside text—common in HTML email, inline icons, or quick demos.
+        This utility reads an image you select from disk, converts it to a Base64 payload prefixed with the correct MIME type,
+        and exposes both the full Data URL and the raw Base64 segment for APIs that expect only the encoded bytes.
+      </p>
+      <p>
+        The preview thumbnail helps confirm you picked the right asset before you paste a multi-kilobyte string into Slack or a ticket.
+        Because <code>FileReader</code> runs locally, your intellectual property never traverses our application servers as part of this conversion.
+      </p>
+
+      <h2>When this page shines</h2>
+      <ul>
+        <li>Generating inline assets for prototypes when a CDN is not wired up yet.</li>
+        <li>Comparing encoded size across PNG versus WebP exports.</li>
+        <li>Teaching teammates how MIME prefixes pair with Base64 payloads.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Click <strong>Choose image</strong> and pick a raster file from your device.</li>
+        <li>Wait for the preview and Data URL field to populate.</li>
+        <li>Copy either the Data URL (for CSS/HTML) or the raw Base64 (for JSON APIs).</li>
+        <li>Clear when finished so the next person using the workstation does not see your asset.</li>
+      </ol>
+
+      <h2>Performance guidance</h2>
+      <p>
+        Large photos expand into very long strings and may lag the editor. Resize images in a dedicated tool before encoding when possible.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Do you upload my file?</dt>
+        <dd>No. The browser reads bytes locally and discards them when you refresh or clear.</dd>
+        <dt>Why is the string so long?</dt>
+        <dd>Base64 expands binary size by roughly four thirds plus the MIME prefix.</dd>
+        <dt>Can I encode SVG?</dt>
+        <dd>Yes if the browser recognizes the MIME type, but remember SVG can contain scripts—only encode trusted files.</dd>
+        <dt>Does this strip EXIF metadata?</dt>
+        <dd>The Base64 reflects the file bytes as read; metadata embedded in the file remains unless you preprocess the image elsewhere.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 
@@ -88,7 +128,6 @@ const copy = (text) => {
   display: flex;
   gap: 15px;
   flex: 1;
-  min-height: 0;
   padding: 0 15px;
   align-items: stretch;
 }

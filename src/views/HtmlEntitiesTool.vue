@@ -20,13 +20,51 @@
         <pre class="result-content">{{ outputText }}</pre>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>Escape vs unescape</h2>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About HTML entity tools</h2>
       <p>
-        <strong>Escape</strong> turns <code>&amp; &lt; &gt; " '</code> into entity form for safe HTML.
-        <strong>Unescape</strong> uses the browser to resolve numeric and common named entities (e.g. <code>&amp;amp;</code> → <code>&amp;</code>).
+        Web pages treat certain characters as markup delimiters. When you embed user-generated text inside HTML attributes or
+        template literals, you must escape those characters so browsers do not interpret them as tags. Conversely, when you import
+        legacy HTML snippets into React or Vue, you often need to decode entities back to Unicode for editing.
       </p>
-    </div>
+      <p>
+        This page offers bidirectional helpers: <strong>Escape</strong> applies the canonical replacements for ampersands, angle brackets,
+        and both quote styles. <strong>Unescape</strong> leverages the browser’s HTML parser through a detached textarea so numeric
+        entities like <code>&amp;#39;</code> and named entities like <code>&amp;nbsp;</code> resolve correctly.
+      </p>
+
+      <h2>Common scenarios</h2>
+      <ul>
+        <li>Preparing copy for CMS fields that accept raw HTML but not arbitrary script tags.</li>
+        <li>Decoding email fragments before analysis.</li>
+        <li>Sanity-checking double-encoding bugs (<code>&amp;amp;amp;</code>) in localization files.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Paste the string you need to transform.</li>
+        <li>Choose <strong>Escape</strong> before inserting into HTML or XML contexts.</li>
+        <li>Choose <strong>Unescape</strong> when you start with encoded entities.</li>
+        <li>Use <strong>Swap</strong> to bounce output back into the editor for chained fixes.</li>
+      </ol>
+
+      <h2>Security reminder</h2>
+      <p>
+        Decoding entities does not sanitize JavaScript. Never write decoded user content into <code>innerHTML</code> without a dedicated sanitizer.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Does escape cover every Unicode character?</dt>
+        <dd>It covers the dangerous structural characters. Other symbols pass through unchanged.</dd>
+        <dt>Why does unescape differ from Python’s html.unescape?</dt>
+        <dd>Browser parsers follow HTML living-standard rules, which may differ slightly from other runtimes.</dd>
+        <dt>Is data uploaded?</dt>
+        <dd>No. Both directions run locally.</dd>
+        <dt>Can I escape for XML attributes?</dt>
+        <dd>Yes for basic cases, but XML may require additional entity definitions depending on your schema.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 

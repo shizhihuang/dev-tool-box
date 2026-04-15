@@ -26,10 +26,50 @@
         <pre class="result-content">{{ outputText }}</pre>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>Integer bases 2–36</h2>
-      <p>Uses arbitrary-precision integers (<code>BigInt</code>) so large values stay exact. Letters are case-insensitive; negative sign is supported.</p>
-    </div>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About radix (base) conversion</h2>
+      <p>
+        Developers routinely move between decimal, hexadecimal, and binary when debugging protocols, bitmask enums, or embedded register maps.
+        JavaScript’s <code>parseInt</code> and <code>toString</code> helpers lose precision once integers exceed <code>Number.MAX_SAFE_INTEGER</code>,
+        so this tool uses <code>BigInt</code> arithmetic to keep every digit exact from base 2 through base 36.
+      </p>
+      <p>
+        Digits beyond nine use letters <code>a–z</code> case-insensitively, matching conventions from cryptography tooling and assembly listings.
+        Negative values are supported with a leading minus sign.
+      </p>
+
+      <h2>Ideal use cases</h2>
+      <ul>
+        <li>Converting 256-bit constants from hex to decimal for documentation.</li>
+        <li>Translating custom alphabets used in URL shorteners (base 36).</li>
+        <li>Teaching computer science students how positional numeral systems generalize.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Enter an integer string valid in the source base (no fractional part).</li>
+        <li>Set <strong>From base</strong> and <strong>To base</strong> between 2 and 36.</li>
+        <li>Click <strong>Convert</strong> to compute the exact BigInt result.</li>
+        <li>Copy the output for use in code, spreadsheets, or tickets.</li>
+      </ol>
+
+      <h2>Limitations</h2>
+      <p>
+        Non-integers, scientific notation, and bases above 36 are intentionally unsupported to keep validation predictable.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Why BigInt?</dt>
+        <dd>It avoids silent rounding errors that plague floating-point conversions on large integers.</dd>
+        <dt>Can I paste underscores?</dt>
+        <dd>Not currently—strip separators before converting.</dd>
+        <dt>Is work done on a server?</dt>
+        <dd>No. Parsing and formatting execute locally.</dd>
+        <dt>How are invalid digits reported?</dt>
+        <dd>The status line shows an error naming the offending character and base.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 
@@ -84,7 +124,6 @@ const copy = (text) => {
   display: flex;
   gap: 15px;
   flex: 1;
-  min-height: 0;
   padding: 0 15px;
 }
 

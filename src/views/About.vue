@@ -41,6 +41,42 @@
     </section>
 
     <section>
+      <h2>Editorial approach</h2>
+      <p>
+        Each tool page includes original guidance: what the utility is for, how to operate it safely, and frequently asked questions.
+        We avoid auto-generated filler; when a feature has sharp edges (for example YAML anchors or XML mixed content), we call that out explicitly
+        so you can choose the right workflow before you invest time.
+      </p>
+      <p>
+        Fast Toolkit is operated by an independent maintainer focused on international developers. Revenue from display advertising may fund hosting
+        on Vercel, domain renewals, and incremental improvements. Advertising does not change the fact that tool execution stays inside your browser.
+      </p>
+    </section>
+
+    <section>
+      <h2>Relationship to Google services</h2>
+      <p>
+        We use Google Analytics to understand aggregate traffic and may use Google AdSense to show ads. Those services have their own privacy policies
+        and cookies as described in our Privacy Policy. Opting out of personalized ads or analytics is handled through your Google account or browser
+        settings where applicable.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently asked questions</h2>
+      <dl class="about-faq">
+        <dt>Is Fast Toolkit open source?</dt>
+        <dd>If a public repository is published for this project, the shipped LICENSE file controls reuse. Otherwise, treat the deployed site as a hosted service.</dd>
+        <dt>Do you offer SLAs or enterprise support?</dt>
+        <dd>Not today—email us for bespoke arrangements if you need a hardened internal deployment.</dd>
+        <dt>Will you read my pasted API keys?</dt>
+        <dd>We cannot read your clipboard. Follow your company policy for secrets regardless of which website you visit.</dd>
+        <dt>How often is content updated?</dt>
+        <dd>Tool descriptions evolve as users report edge cases. The “Last updated” note on legal pages tracks policy changes.</dd>
+      </dl>
+    </section>
+
+    <section>
       <h2>Contact</h2>
       <p>
         Questions or feedback? Reach out at
@@ -78,6 +114,19 @@
 }
 .page-content ul {
   margin: 0.5rem 0 0 1.2rem;
+}
+
+.about-faq dt {
+  font-weight: 600;
+  margin-top: 0.9rem;
+}
+
+.about-faq dt:first-child {
+  margin-top: 0.25rem;
+}
+
+.about-faq dd {
+  margin: 0.35rem 0 0 0;
 }
 .page-content a {
   color: #3498db;

@@ -24,10 +24,53 @@
         <pre class="result-content">{{ regexOutput }}</pre>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>Regex Tester Guide</h2>
-      <p>Test regular expressions with custom flags. Inspect matches or apply replace previews for common text-cleanup tasks.</p>
-    </div>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About this JavaScript regex tester</h2>
+      <p>
+        Regular expressions are easy to get subtly wrong. This workspace mirrors the <code>RegExp</code> engine available in
+        Chrome, Firefox, Safari, or Edge so you can prototype patterns for input validation, log mining, or refactors before
+        you paste them into production code.
+      </p>
+      <p>
+        The <strong>Match</strong> action lists every capture with indexes (when the global flag is present). The
+        <strong>Replace</strong> action shows a simple preview where each match becomes the literal text <code>[MATCH]</code>—enough
+        to reason about coverage without overwriting your source data.
+      </p>
+
+      <h2>Good fits for this page</h2>
+      <ul>
+        <li>Sanity-checking email or phone patterns against real-world samples.</li>
+        <li>Exploring how greedy versus lazy quantifiers change match length.</li>
+        <li>Teaching teammates how multiline (<code>m</code>) or case-insensitive (<code>i</code>) flags behave.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Paste representative text on the left. Include edge cases you care about.</li>
+        <li>Enter your pattern without surrounding slashes.</li>
+        <li>Add flags such as <code>g</code>, <code>i</code>, or <code>m</code> in the flags field (spaces are ignored).</li>
+        <li>Click <strong>Match</strong> to enumerate hits as JSON, or <strong>Replace</strong> for a quick substitution preview.</li>
+        <li>Iterate until the status line reports the count you expect.</li>
+      </ol>
+
+      <h2>Performance &amp; safety tips</h2>
+      <p>
+        Catastrophic backtracking can freeze the tab if a pattern combinatorially explodes. Start with small samples, then scale up.
+        Never run untrusted regex against untrusted megabyte logs without safeguards.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Is this PCRE?</dt>
+        <dd>No. It is JavaScript’s regex flavor. Lookaheads are supported, but some PCRE-only features are unavailable.</dd>
+        <dt>Why do I see “No matches found”?</dt>
+        <dd>Confirm the global flag when you expect multiple hits, and verify that special characters are not over-escaped in the pattern field.</dd>
+        <dt>Can I use replacement templates?</dt>
+        <dd>This UI uses a fixed placeholder for preview purposes. Move to your editor or tests for dollar-sign capture replacements.</dd>
+        <dt>Does my sample text leave the browser?</dt>
+        <dd>No. Matching executes locally.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 

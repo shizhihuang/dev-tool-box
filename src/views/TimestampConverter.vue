@@ -24,10 +24,49 @@
         <p v-else class="ts-hint">Paste a value and press Convert.</p>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>Timestamp tips</h2>
-      <p>Numeric strings: 10 digits are treated as seconds, 13 digits as milliseconds. You can also paste ISO strings like <code>2026-04-03T12:00:00Z</code>.</p>
-    </div>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About this timestamp converter</h2>
+      <p>
+        Distributed systems, JWT expirations, log aggregators, and browser devtools all speak different time dialects: Unix seconds,
+        Unix milliseconds, RFC 1123 strings, and ISO 8601 with offsets. This page normalizes a single input into the representations
+        engineers most often copy into tickets or unit tests.
+      </p>
+      <p>
+        Numeric detection is length-based: ten or fewer digits are treated as seconds; longer digit runs are treated as milliseconds.
+        You can also paste human-readable strings that <code>Date.parse</code> understands, such as ISO timestamps with a <code>Z</code> suffix.
+      </p>
+
+      <h2>Typical workflows</h2>
+      <ul>
+        <li>Converting Grafana log timestamps into ISO for SQL queries.</li>
+        <li>Double-checking JWT <code>exp</code> claims before they hit production.</li>
+        <li>Explaining to support how a UTC instant maps to a customer’s local wall clock.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Paste a numeric timestamp or a parseable date string into the editor.</li>
+        <li>Click <strong>Convert</strong> to populate the result list.</li>
+        <li>Use the per-row <strong>Copy</strong> buttons to grab the exact format your downstream tool expects.</li>
+      </ol>
+
+      <h2>Timezone caveats</h2>
+      <p>
+        ISO output is always UTC (<code>Z</code>). Local string output depends on the machine running the browser, so remote teammates may see different local strings for the same instant.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Why does my 10-digit number look wrong?</dt>
+        <dd>Confirm it is seconds, not milliseconds truncated. Millisecond values are usually 13 digits.</dd>
+        <dt>Does this handle leap seconds?</dt>
+        <dd>JavaScript dates follow ECMAScript rules; extremely edge-case leap-second smearing may differ from astronomy libraries.</dd>
+        <dt>Is input sent to a backend?</dt>
+        <dd>No. Conversion uses your browser’s Date implementation only.</dd>
+        <dt>Why did parsing fail?</dt>
+        <dd>Ambiguous locale-specific strings may not parse. Prefer ISO 8601 forms for reliable results.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 
@@ -95,7 +134,6 @@ const copy = (value) => {
   display: flex;
   gap: 15px;
   flex: 1;
-  min-height: 0;
   padding: 0 15px;
 }
 

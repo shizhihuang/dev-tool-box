@@ -22,10 +22,51 @@
         <pre class="result-content uuid-out">{{ outputText || 'Click Generate.' }}</pre>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>UUID v4</h2>
-      <p>Uses <code>crypto.randomUUID()</code> when available (RFC 4122 version 4). Up to 100 IDs per batch, local only.</p>
-    </div>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About UUID version 4</h2>
+      <p>
+        Universally unique identifiers remove coordination overhead when databases need primary keys or when microservices must
+        correlate events without a central allocator. Version 4 IDs are random (with reserved version and variant bits), making
+        collisions astronomically unlikely for practical engineering purposes.
+      </p>
+      <p>
+        This generator prefers <code>crypto.randomUUID()</code> when the browser exposes it, falls back to <code>getRandomValues</code>,
+        and only then uses a Math-based generator clearly labeled as non-cryptographic. You can emit up to one hundred IDs per batch
+        and optionally uppercase them for systems that require uppercase hex.
+      </p>
+
+      <h2>When batch generation helps</h2>
+      <ul>
+        <li>Seeding integration tests with deterministic-looking but unique identifiers.</li>
+        <li>Provisioning temporary filenames for offline demos.</li>
+        <li>Generating correlation IDs for log pipelines during load tests.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Set the desired count (1–100).</li>
+        <li>Toggle <strong>Uppercase</strong> if downstream systems require uppercase hex digits.</li>
+        <li>Click <strong>Generate</strong> to populate the output pane.</li>
+        <li>Copy the block into spreadsheets, fixtures, or shell scripts.</li>
+      </ol>
+
+      <h2>Privacy</h2>
+      <p>
+        IDs are created locally. They are not logged by this tool, although your browser extensions or analytics may still record page views normally.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Are these IDs cryptographically secure?</dt>
+        <dd>When Web Crypto is available, yes for typical engineering threat models. Avoid the Math fallback for secrets.</dd>
+        <dt>Can I generate ULIDs?</dt>
+        <dd>Not on this page—UUID v4 only.</dd>
+        <dt>Why limit batches to 100?</dt>
+        <dd>It keeps the UI responsive and discourages accidental thousand-line pastes into editors.</dd>
+        <dt>Do UUIDs leak entropy?</dt>
+        <dd>They reveal nothing beyond random bits; still, do not embed sequential business identifiers if those must stay private.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 
@@ -90,7 +131,6 @@ const copy = (text) => {
 .uuid-layout {
   padding: 0 15px;
   flex: 1;
-  min-height: 0;
   display: flex;
   flex-direction: column;
 }

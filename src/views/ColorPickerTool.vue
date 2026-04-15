@@ -22,10 +22,49 @@
         <p class="hint">{{ status }}</p>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>Formats</h2>
-      <p>Pick a color or type hex (<code>#rgb</code>, <code>#rrggbb</code>). Outputs RGB and HSL strings you can paste into CSS.</p>
-    </div>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About this color picker</h2>
+      <p>
+        Designers and front-end engineers constantly translate between HEX swatches from brand guidelines, <code>rgb()</code> tuples from design tokens,
+        and <code>hsl()</code> values when tweaking lightness in CSS. This page centralizes those conversions with a native color input for fast exploration
+        plus text fields for precise edits.
+      </p>
+      <p>
+        The picker normalizes shorthand HEX (three-digit) into six-digit lowercase form so downstream tools receive predictable strings.
+        RGB output uses 8-bit channels; HSL values are rounded integers suitable for quick prototyping even though design tools may show decimals.
+      </p>
+
+      <h2>When to use it</h2>
+      <ul>
+        <li>Copying ready-to-paste CSS color functions from a brand HEX.</li>
+        <li>Checking contrast pairs by bouncing between HEX and HSL lightness.</li>
+        <li>Teaching how sRGB hex maps to cylindrical HSL coordinates.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Drag the native color thumb or paste a HEX string into the text field.</li>
+        <li>Confirm the swatch matches your intent.</li>
+        <li>Copy HEX, <code>rgb()</code>, or <code>hsl()</code> using the per-row buttons.</li>
+      </ol>
+
+      <h2>Color science caveats</h2>
+      <p>
+        This tool operates in sRGB space like most web canvases. It does not model wide-gamut displays or OKLCH unless you extend the code separately.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Does it support alpha channels?</dt>
+        <dd>Not in this UI—opaque colors only.</dd>
+        <dt>Why does HSL differ slightly from Figma?</dt>
+        <dd>Rounding and gamut assumptions differ across implementations; treat values as starting points.</dd>
+        <dt>Is anything uploaded?</dt>
+        <dd>No. Colors stay inside the browser tab.</dd>
+        <dt>Can I enter hsl manually?</dt>
+        <dd>Currently you drive the picker via HEX or the native control; extend the app if you need reverse parsing.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 

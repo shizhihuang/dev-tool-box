@@ -1,7 +1,7 @@
 <template>
   <div class="page-content">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: March 18, 2025</p>
+    <p class="updated">Last updated: April 15, 2026</p>
 
     <section>
       <h2>1. Introduction</h2>
@@ -14,8 +14,14 @@
     <section>
       <h2>2. Information We Do NOT Collect</h2>
       <p>
-        Our tools (JSON Formatter, Base64 Encode/Decode, URL Encode/Decode) run entirely in your browser. We do <strong>not</strong> collect,
-        store, or transmit any of the data you paste or input. Your content never leaves your device for our servers.
+        Our tools—including JSON and XML formatters, YAML/JSON conversion, CSV utilities, Markdown preview, QR generation, timestamp conversion,
+        Base64 (text and image), URL encoding, regular-expression testing, HTML entity helpers, UUID generation, number-base conversion, and the
+        color picker—run <strong>entirely in your browser</strong>. We do <strong>not</strong> collect, store, or transmit the payloads you paste,
+        upload locally, or generate. Your content does not leave your device to our application servers as part of those tool operations.
+      </p>
+      <p>
+        You are still responsible for compliance with your employer’s policies, clearing shared workstations after sensitive work, and avoiding
+        pasting regulated data into any third-party website when prohibited.
       </p>
     </section>
 

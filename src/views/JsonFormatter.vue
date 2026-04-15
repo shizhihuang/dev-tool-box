@@ -24,16 +24,63 @@
         <pre v-html="jsonOutput" class="result-content"></pre>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>JSON Formatter Guide</h2>
-      <p>Use this tool to validate, format, minify, and sort JSON keys before sharing API payloads or config files.</p>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About this JSON formatter</h2>
+      <p>
+        JSON (JavaScript Object Notation) is the lingua franca of modern APIs, configuration files, and log exports.
+        This page gives you a fast, private workspace to pretty-print messy payloads, confirm syntax before a deploy,
+        shrink JSON for bandwidth-sensitive clients, and turn tabular JSON into CSV for stakeholders who live in spreadsheets.
+      </p>
+      <p>
+        Everything runs in your browser: your documents are not uploaded to our servers. That makes this tool suitable
+        for production API responses, internal tokens (still: be careful on shared machines), and one-off debugging sessions.
+      </p>
+
+      <h2>When this tool helps</h2>
       <ul>
-        <li><strong>Format:</strong> Pretty-print JSON with indentation for readability.</li>
-        <li><strong>Minify:</strong> Remove whitespace to reduce payload size.</li>
-        <li><strong>Sort Keys:</strong> Output stable key order to make diffs cleaner.</li>
-        <li><strong>JSON to CSV:</strong> Convert array-of-object JSON into CSV for spreadsheets.</li>
+        <li>Validating a response body from REST or GraphQL before you commit it to documentation.</li>
+        <li>Normalizing config JSON so Git diffs stay readable across teams.</li>
+        <li>Minifying JSON for mobile payloads or embedded firmware messages.</li>
+        <li>Exporting an array of homogeneous objects to CSV for finance or operations teams.</li>
       </ul>
-    </div>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Paste or type JSON into the left editor. You can trigger a quick format pass as you type.</li>
+        <li>Use <strong>Format</strong> for indented, human-readable output with syntax highlighting on the right.</li>
+        <li>Use <strong>Minify</strong> when you need a single-line payload for storage or transmission.</li>
+        <li>Use <strong>Sort Keys</strong> to alphabetize keys recursively—ideal before comparing two large objects.</li>
+        <li>Use <strong>JSON to CSV</strong> when the root value is an object or an array of objects with similar keys.</li>
+        <li>Use <strong>Copy Result</strong> once you are satisfied; the plain text buffer avoids HTML markup from the highlighter.</li>
+      </ol>
+
+      <h2>Tips</h2>
+      <ul>
+        <li>Very large files may slow down the tab; consider splitting or sampling in those cases.</li>
+        <li>If <strong>Validate</strong> fails, scroll to the position indicated by your editor—the error is usually a trailing comma or a stray quote.</li>
+        <li>CSV export uses the union of keys across rows; missing keys render as blank cells.</li>
+      </ul>
+
+      <h2>Privacy on this page</h2>
+      <p>
+        Parsing and stringification happen locally via your browser’s JavaScript engine. Clear the editor when you finish
+        if others use the same device.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Does this tool send my JSON to a server?</dt>
+        <dd>No. Network calls you see in DevTools should only reflect analytics or ads, not your pasted JSON content.</dd>
+        <dt>Why does minified JSON look unreadable?</dt>
+        <dd>That is intentional—whitespace is removed to save bytes. Keep a formatted copy in source control for humans.</dd>
+        <dt>Why did JSON to CSV fail?</dt>
+        <dd>The converter expects an object or an array of objects. Arrays of primitives or deeply nested graphs need a different approach.</dd>
+        <dt>Can I sort keys inside nested objects?</dt>
+        <dd>Yes. Sort Keys walks the tree recursively so nested structures share the same deterministic ordering.</dd>
+        <dt>Is Unicode preserved?</dt>
+        <dd>Yes. The editor treats input as UTF-16 JavaScript strings, so international text remains intact.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 

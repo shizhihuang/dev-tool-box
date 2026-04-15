@@ -3,6 +3,25 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  align-items: stretch;
+}
+
+/*
+ * Tool workspace + long article are siblings in a column flex container.
+ * Without flex-shrink: 0 + min-height, the workspace can collapse toward 0 when the article is tall,
+ * making the editor appear "covered" or unusable. Keep a stable viewport share for the tool UI.
+ */
+.tool-page > .tool-layout,
+.tool-page > .qr-layout,
+.tool-page > .img-layout,
+.tool-page > .nb-layout,
+.tool-page > .ts-layout,
+.tool-page > .uuid-layout,
+.tool-page > .color-layout {
+  flex: 1 0 auto !important;
+  flex-shrink: 0 !important;
+  /* Scoped SFC rules often set min-height:0 for nested scroll; that collapses the workspace when a tall article follows. */
+  min-height: clamp(260px, 44vh, 720px) !important;
 }
 
 .tool-page h1 {
@@ -156,6 +175,94 @@
   margin-left: 1rem;
 }
 
+/* Long-form publisher content (AdSense / quality guidelines) */
+.tool-help.tool-help--rich {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 16px;
+  margin-bottom: 28px;
+  padding: 20px 18px 22px;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  position: relative;
+  z-index: 0;
+  box-sizing: border-box;
+}
+
+.tool-help--rich h2 {
+  font-size: 1.08rem;
+  margin-top: 1.45rem;
+  margin-bottom: 0.55rem;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.tool-help--rich h2:first-of-type {
+  margin-top: 0;
+}
+
+.tool-help--rich h3 {
+  font-size: 0.98rem;
+  margin: 1rem 0 0.4rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.tool-help--rich ol.steps {
+  margin: 0.45rem 0 1rem 1.2rem;
+  padding: 0;
+}
+
+.tool-help--rich ol.steps li {
+  margin-bottom: 0.35rem;
+}
+
+.tool-help--rich .faq {
+  margin: 0.5rem 0 0;
+}
+
+.tool-help--rich .faq dt {
+  font-weight: 600;
+  margin-top: 0.95rem;
+  color: #0f172a;
+}
+
+.tool-help--rich .faq dt:first-child {
+  margin-top: 0.35rem;
+}
+
+.tool-help--rich .faq dd {
+  margin: 0.35rem 0 0 0;
+  padding: 0;
+}
+
+.tool-help--rich code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.88em;
+  background: #e2e8f0;
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+}
+
+.app.dark .tool-help--rich h2 {
+  color: #f8fafc;
+}
+
+.app.dark .tool-help--rich h3 {
+  color: #cbd5e1;
+}
+
+.app.dark .tool-help--rich .faq dt {
+  color: #e2e8f0;
+}
+
+.app.dark .tool-help--rich code {
+  background: #334155;
+}
+
 .regex-controls {
   display: flex;
   gap: 8px;
@@ -237,6 +344,16 @@
 }
 
 @media (max-width: 768px) {
+  .tool-page > .tool-layout,
+  .tool-page > .qr-layout,
+  .tool-page > .img-layout,
+  .tool-page > .nb-layout,
+  .tool-page > .ts-layout,
+  .tool-page > .uuid-layout,
+  .tool-page > .color-layout {
+    min-height: clamp(220px, 36vh, 520px) !important;
+  }
+
   .tool-layout {
     flex-direction: column;
     gap: 10px;

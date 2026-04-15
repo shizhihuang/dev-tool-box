@@ -20,13 +20,51 @@
         <pre class="result-content">{{ outputText }}</pre>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>XML format &amp; JSON</h2>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About these XML utilities</h2>
       <p>
-        Formatting uses the browser XML parser. XML → JSON uses a simple convention: attributes become keys like
-        <code>@name</code>, repeated tags become arrays, and text-only leaves collapse to strings when possible.
+        XML still powers SOAP integrations, RSS feeds, Android resources, and plenty of enterprise configuration pipelines.
+        This page helps you beautify opaque blobs for code review, shrink them for transport, and explore a JSON projection when
+        you need to reason about the same data in JavaScript tooling.
       </p>
-    </div>
+      <p>
+        Formatting relies on the browser’s <code>DOMParser</code> implementation, so you get the same structural validation Chrome or Firefox would apply.
+        JSON conversion uses an explicit convention: attributes are prefixed with <code>@</code>, repeated sibling tags collapse into arrays,
+        and mixed-content edge cases may introduce <code>#text</code> nodes—verify output before feeding it into strict schemas.
+      </p>
+
+      <h2>Good fits</h2>
+      <ul>
+        <li>Prettifying SOAP responses saved from proxy logs.</li>
+        <li>Minifying Android XML resources before diffing.</li>
+        <li>Exploring legacy config files prior to migrating them to JSON or YAML.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Paste well-formed XML into the editor.</li>
+        <li>Use <strong>Format</strong> for indented output, or <strong>Minify</strong> to remove whitespace between tags.</li>
+        <li>Use <strong>XML → JSON</strong> when you need a quick structural view inside JSON-aware tools.</li>
+        <li>Copy the result after validating downstream expectations.</li>
+      </ol>
+
+      <h2>Privacy</h2>
+      <p>
+        Parsing and serialization happen entirely in your tab. Large documents may stress memory but never leave the device because of this tool.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Why does the parser reject my file?</dt>
+        <dd>XML must be well-formed (matching tags, legal entities). Fix parsererror details shown in the output pane.</dd>
+        <dt>Does JSON → XML exist here?</dt>
+        <dd>Not in this version—export JSON elsewhere if you need the inverse transformation.</dd>
+        <dt>Are namespaces preserved?</dt>
+        <dd>Prefixes and xmlns declarations appear in attribute keys, but you should still validate with your target stack.</dd>
+        <dt>Is mixed content handled perfectly?</dt>
+        <dd>Complex mixtures of text and elements may require manual cleanup after conversion.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 

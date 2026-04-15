@@ -19,14 +19,51 @@
         <pre class="result-content">{{ outputText }}</pre>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>YAML ↔ JSON</h2>
-      <p>Convert between YAML and JSON in the browser. Handy for Kubernetes configs, CI files, and API debugging.</p>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>Why convert YAML and JSON?</h2>
+      <p>
+        YAML remains the default for many operations teams—Kubernetes manifests, GitHub Actions, Ansible inventories—while JSON
+        dominates browser APIs and NoSQL document stores. Moving between the two formats is a daily task when you validate a
+        cluster export in jq, diff configs, or embed the same structure inside a JSON-only pipeline.
+      </p>
+      <p>
+        This converter uses a mature YAML parser bundled with the page. Round-trips are intentionally conservative: advanced YAML
+        features such as anchors, aliases, and custom tags may flatten when you serialize back out, so treat output as a structural
+        representation rather than a byte-for-byte preservation of exotic YAML.
+      </p>
+
+      <h2>Ideal workflows</h2>
       <ul>
-        <li><strong>YAML → JSON:</strong> Parses YAML and prints formatted JSON.</li>
-        <li><strong>JSON → YAML:</strong> Parses JSON and prints YAML (anchors are not preserved).</li>
+        <li>Paste a service manifest, convert to JSON, and pipe through your organization’s JSON schema validator.</li>
+        <li>Convert API examples from OpenAPI JSON snippets into readable YAML for documentation.</li>
+        <li>Prototype config changes in YAML, then export JSON for tools that only accept JSON.</li>
       </ul>
-    </div>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Paste YAML or JSON into the editor depending on your starting format.</li>
+        <li>Click <strong>YAML → JSON</strong> when the left editor contains YAML. Errors display parser hints inline.</li>
+        <li>Click <strong>JSON → YAML</strong> when the editor contains valid JSON (objects, arrays, primitives).</li>
+        <li>Copy the output once you confirm indentation and quoting meet downstream expectations.</li>
+      </ol>
+
+      <h2>Privacy</h2>
+      <p>
+        Parsing happens entirely in-browser. Clear the textarea after handling secrets such as sealed secrets or tokens—even though nothing is uploaded, shoulder surfing still matters.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Are YAML anchors preserved?</dt>
+        <dd>Not reliably. The JSON intermediate representation expands anchors, and dumping back to YAML may inline values.</dd>
+        <dt>Why does JSON → YAML wrap strings in quotes?</dt>
+        <dd>The serializer chooses quoting when values look ambiguous to YAML (for example booleans or numbers).</dd>
+        <dt>Can I convert multi-document YAML?</dt>
+        <dd>Only the first document is supported in this UI. Split files manually for predictable results.</dd>
+        <dt>Does this hit an API?</dt>
+        <dd>No. Both directions run locally with bundled JavaScript.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 

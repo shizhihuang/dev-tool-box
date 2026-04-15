@@ -22,10 +22,51 @@
         <pre class="result-content">{{ outputText }}</pre>
       </div>
     </div>
-    <div class="tool-help">
-      <h2>CSV tools</h2>
-      <p>Align columns for readability, convert the first row to JSON keys, or turn an array of objects into CSV.</p>
-    </div>
+    <article class="tool-help tool-help--rich" lang="en">
+      <h2>About these CSV utilities</h2>
+      <p>
+        CSV looks simple until you encounter quoted fields, embedded commas, or regional exports from finance teams.
+        This workspace helps you visually align columns for code review, shrink files back to strict delimiter-only rows,
+        and move between CSV and JSON when APIs demand structured objects.
+      </p>
+      <p>
+        The delimiter field defaults to comma but accepts semicolons or tabs when you work with European spreadsheets or TSV dumps.
+        Parsing follows a standard quoted-field state machine so newline characters inside quotes are preserved.
+      </p>
+
+      <h2>When teams use this page</h2>
+      <ul>
+        <li>Beautifying a vendor CSV before attaching it to a ticket.</li>
+        <li>Converting spreadsheet exports to JSON arrays for unit tests.</li>
+        <li>Generating CSV fixtures from JSON objects returned by staging APIs.</li>
+      </ul>
+
+      <h2>How to use this page</h2>
+      <ol class="steps">
+        <li>Paste CSV into the editor (include a header row for JSON conversion).</li>
+        <li>Set the delimiter character if you are not using commas.</li>
+        <li>Choose <strong>Format (columns)</strong> for monospace-aligned columns, or <strong>Minify</strong> to remove padding.</li>
+        <li>Use <strong>CSV → JSON</strong> when the first row should become object keys.</li>
+        <li>Use <strong>JSON → CSV</strong> when the left editor contains an array of homogeneous objects.</li>
+      </ol>
+
+      <h2>Data handling</h2>
+      <p>
+        All transformations execute locally. Large CSV files may stress the tab; trim columns or sample rows if performance drops.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="faq">
+        <dt>Why is my JSON → CSV empty?</dt>
+        <dd>Ensure the payload is an array of objects (or a single object). Arrays of strings are not supported by this generator.</dd>
+        <dt>How are missing keys handled?</dt>
+        <dd>The exporter uses the union of keys across rows. Missing values become blank cells.</dd>
+        <dt>Does CSV → JSON support nested objects?</dt>
+        <dd>No. Each row becomes a flat object with string values. Normalize nested structures before converting.</dd>
+        <dt>Is data uploaded?</dt>
+        <dd>No. Everything stays in your browser session.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 

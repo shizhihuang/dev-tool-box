@@ -13,6 +13,55 @@
         <p>{{ item.blurb }}</p>
       </router-link>
     </section>
+
+    <article class="home-article" lang="en" aria-labelledby="home-article-title">
+      <h2 id="home-article-title">What Fast Toolkit is</h2>
+      <p>
+        Fast Toolkit is an editorially maintained collection of browser-based utilities for software engineers, site reliability engineers,
+        technical writers, and curious makers. Each tool page explains not only which buttons to press but also why the operation matters,
+        how your data stays on-device, and which limitations you should plan for when you move work back into production systems.
+      </p>
+      <p>
+        We built the suite around a simple promise: <strong>no accounts, no uploads of your payloads to our application servers</strong>.
+        Parsing, formatting, rendering, and conversions execute with JavaScript inside your tab. That design supports sensitive workflows such as
+        inspecting JSON from a private API or converting a customer’s CSV excerpt—as long as you still follow your employer’s data-handling policies
+        and clear the page when you finish on a shared computer.
+      </p>
+
+      <h2>How we choose what to ship</h2>
+      <p>
+        Every utility solves a narrow problem we have hit repeatedly in real shipping work: messy JSON from logs, YAML copied out of Kubernetes,
+        Markdown drafts that need a quick preview, QR codes for staging environments, timestamps pulled from distributed traces, and so on.
+        We document edge cases directly on the page so you can decide whether this site or a heavier desktop tool is the right fit.
+      </p>
+
+      <h2>Using this site responsibly</h2>
+      <ul>
+        <li>Read the per-tool FAQ before you paste regulated data—even local tools cannot stop shoulder surfing.</li>
+        <li>Prefer dedicated secret managers for long-lived credentials; never treat Base64 or QR codes as encryption.</li>
+        <li>Combine these utilities with your normal code review, linting, and automated tests—think of Fast Toolkit as a notebook, not a compiler.</li>
+      </ul>
+
+      <h2>Transparency &amp; ads</h2>
+      <p>
+        We may display Google AdSense or similar placements to fund hosting and ongoing improvements. Ads are configured to avoid intrusive formats
+        wherever possible, and we publish a Privacy Policy describing analytics cookies. Tool logic still runs locally; advertising is orthogonal to your input.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <dl class="home-faq">
+        <dt>Do you store what I paste into the tools?</dt>
+        <dd>No. The tools are implemented as client-side scripts. Third-party analytics may record page views as described in our Privacy Policy.</dd>
+        <dt>Can I use Fast Toolkit offline?</dt>
+        <dd>After the first load, some browsers may cache assets, but you should assume network access is required unless you self-host the build.</dd>
+        <dt>How do I request a new tool?</dt>
+        <dd>Email hello@fasttoolkit.dev with a short user story—we read every message even if we cannot commit to a timeline.</dd>
+        <dt>Is commercial use allowed?</dt>
+        <dd>Yes, subject to any license file shipped with the repository if you fork the open-source build.</dd>
+        <dt>Why English copy?</dt>
+        <dd>English keeps guidance accessible to the widest international engineering audience while we iterate on localization.</dd>
+      </dl>
+    </article>
   </div>
 </template>
 
@@ -103,6 +152,66 @@ const tools = [
 
 .app.dark .card p {
   color: #cbd5e1;
+}
+
+.home-article {
+  margin-top: 28px;
+  padding: 22px 18px 28px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #1e293b;
+  text-align: left;
+}
+
+.app.dark .home-article {
+  border-color: #374151;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.home-article h2 {
+  font-size: 1.15rem;
+  margin: 1.35rem 0 0.55rem;
+  color: #0f172a;
+}
+
+.home-article h2:first-of-type {
+  margin-top: 0;
+}
+
+.app.dark .home-article h2 {
+  color: #f8fafc;
+}
+
+.home-article p {
+  margin: 0 0 0.85rem;
+}
+
+.home-article ul {
+  margin: 0.35rem 0 1rem 1.25rem;
+}
+
+.home-faq {
+  margin: 0.5rem 0 0;
+}
+
+.home-faq dt {
+  font-weight: 600;
+  margin-top: 0.95rem;
+}
+
+.home-faq dt:first-child {
+  margin-top: 0.35rem;
+}
+
+.home-faq dd {
+  margin: 0.35rem 0 0 0;
 }
 
 @media (max-width: 768px) {
