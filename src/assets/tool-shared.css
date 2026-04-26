@@ -1,0 +1,415 @@
+.tool-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  align-items: stretch;
+}
+
+/*
+ * Tool workspace + long article are siblings in a column flex container.
+ * Without flex-shrink: 0 + min-height, the workspace can collapse toward 0 when the article is tall,
+ * making the editor appear "covered" or unusable. Keep a stable viewport share for the tool UI.
+ */
+.tool-page > .tool-layout,
+.tool-page > .qr-layout,
+.tool-page > .img-layout,
+.tool-page > .nb-layout,
+.tool-page > .ts-layout,
+.tool-page > .uuid-layout,
+.tool-page > .color-layout {
+  flex: 1 0 auto !important;
+  flex-shrink: 0 !important;
+  /* Scoped SFC rules often set min-height:0 for nested scroll; that collapses the workspace when a tall article follows. */
+  min-height: clamp(260px, 44vh, 720px) !important;
+}
+
+.tool-page h1 {
+  font-size: 1.25rem;
+  margin: 0 15px 12px;
+  font-weight: 700;
+}
+
+.tool-layout {
+  display: flex;
+  gap: 15px;
+  flex: 1;
+  min-height: 0;
+  padding: 0 15px;
+}
+
+.input-wrap {
+  flex: 1;
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.app.dark .input-wrap {
+  border-color: #444;
+}
+
+.input-wrap textarea {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  font-family: 'Courier New', monospace;
+  resize: none;
+  background: #f8f9fa;
+  color: #2c3e50;
+}
+
+.app.dark .input-wrap textarea {
+  background: #2c2c2c;
+  color: #f8f8f8;
+}
+
+.clear-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.output-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #f8f9fa;
+  min-height: 0;
+}
+
+.app.dark .output-wrap {
+  border-color: #444;
+  background: #2c2c2c;
+}
+
+.action-bar {
+  display: flex;
+  gap: 10px;
+  min-height: 40px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 0 20px;
+  border: none;
+  border-radius: 6px;
+  background: #2ecc71;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.copy-btn {
+  background: #9b59b6 !important;
+}
+
+.app.dark .action-btn {
+  background: #27ae60;
+}
+
+.app.dark .copy-btn {
+  background: #8e44ad !important;
+}
+
+.result-content {
+  flex: 1;
+  padding: 10px;
+  overflow: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: #2c3e50;
+}
+
+.meta-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+.app.dark .meta-bar {
+  color: #bdc3c7;
+}
+
+.tool-help {
+  margin: 10px 15px 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #dfe6e9;
+  background: #f8fafc;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.tool-help h2 {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.tool-help p {
+  margin-bottom: 6px;
+}
+
+.tool-help ul {
+  margin-left: 1rem;
+}
+
+/* Long-form publisher content (AdSense / quality guidelines) */
+.tool-help.tool-help--rich {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 16px;
+  margin-bottom: 28px;
+  padding: 20px 18px 22px;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  position: relative;
+  z-index: 0;
+  box-sizing: border-box;
+}
+
+.tool-help--rich h2 {
+  font-size: 1.08rem;
+  margin-top: 1.45rem;
+  margin-bottom: 0.55rem;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.tool-help--rich h2:first-of-type {
+  margin-top: 0;
+}
+
+.tool-help--rich h3 {
+  font-size: 0.98rem;
+  margin: 1rem 0 0.4rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.tool-help--rich ol.steps {
+  margin: 0.45rem 0 1rem 1.2rem;
+  padding: 0;
+}
+
+.tool-help--rich ol.steps li {
+  margin-bottom: 0.35rem;
+}
+
+.tool-help--rich .faq {
+  margin: 0.5rem 0 0;
+}
+
+.tool-help--rich .faq dt {
+  font-weight: 600;
+  margin-top: 0.95rem;
+  color: #0f172a;
+}
+
+.tool-help--rich .faq dt:first-child {
+  margin-top: 0.35rem;
+}
+
+.tool-help--rich .faq dd {
+  margin: 0.35rem 0 0 0;
+  padding: 0;
+}
+
+.tool-help--rich code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.88em;
+  background: #e2e8f0;
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+}
+
+.app.dark .tool-help--rich h2 {
+  color: #f8fafc;
+}
+
+.app.dark .tool-help--rich h3 {
+  color: #cbd5e1;
+}
+
+.app.dark .tool-help--rich .faq dt {
+  color: #e2e8f0;
+}
+
+.app.dark .tool-help--rich code {
+  background: #334155;
+}
+
+.regex-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.regex-input {
+  flex: 1;
+  min-width: 160px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  background: #ffffff;
+  color: #2c3e50;
+}
+
+.regex-input.small {
+  flex: 0 0 120px;
+}
+
+.app.dark .regex-input {
+  background: #111827;
+  border-color: #374151;
+  color: #f8f8f8;
+}
+
+.app.dark .tool-help {
+  border-color: #3f3f46;
+  background: #1f2937;
+}
+
+.app.dark .result-content {
+  color: #f8f8f8;
+}
+
+.key {
+  color: #2980b9 !important;
+  font-weight: bold !important;
+}
+
+.str {
+  color: #27ae60 !important;
+}
+
+.num {
+  color: #e67e22 !important;
+}
+
+.bool {
+  color: #8e44ad !important;
+}
+
+.null {
+  color: #7f8c8d !important;
+}
+
+.error {
+  color: #e74c3c !important;
+  font-weight: bold !important;
+}
+
+.back-link {
+  margin: 0 15px 8px;
+  font-size: 0.9rem;
+}
+
+.back-link a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+.app.dark .back-link a {
+  color: #5dade2;
+}
+
+@media (max-width: 768px) {
+  .tool-page > .tool-layout,
+  .tool-page > .qr-layout,
+  .tool-page > .img-layout,
+  .tool-page > .nb-layout,
+  .tool-page > .ts-layout,
+  .tool-page > .uuid-layout,
+  .tool-page > .color-layout {
+    min-height: clamp(220px, 36vh, 520px) !important;
+  }
+
+  .tool-layout {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .tool-page h1 {
+    margin: 0 10px 10px;
+    font-size: 1.1rem;
+  }
+
+  .input-wrap,
+  .output-wrap {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+
+  .input-wrap textarea {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .output-wrap {
+    padding: 8px;
+  }
+
+  .action-bar {
+    min-height: 36px;
+    gap: 8px;
+  }
+
+  .action-btn {
+    padding: 0 14px;
+    font-size: 0.85rem;
+  }
+
+  .clear-btn {
+    top: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  .result-content {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .regex-input {
+    min-width: 0;
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .regex-input.small {
+    flex-basis: 100%;
+  }
+}
