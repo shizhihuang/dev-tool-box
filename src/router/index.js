@@ -4,6 +4,9 @@ import { trackPageView } from '../utils/analytics.js'
 import ToolIndex from '../views/ToolIndex.vue'
 import PrivacyPolicy from '../views/PrivacyPolicy.vue'
 import About from '../views/About.vue'
+import FAQ from '../views/FAQ.vue'
+import Contact from '../views/Contact.vue'
+import Guides from '../views/Guides.vue'
 
 const seo = (title, description, overrides = {}) => ({
   title,
@@ -193,6 +196,83 @@ const routes = [
     },
   },
   {
+    path: '/guides',
+    name: 'Guides',
+    component: Guides,
+    meta: {
+      seo: seo(
+        'Developer Guides | Fast Toolkit',
+        'Practical guides for JSON, Base64, URL encoding, regex, CSV conversion, and Unix timestamp workflows.',
+      ),
+    },
+  },
+  {
+    path: '/guides/json-formatting-best-practices',
+    name: 'GuideJsonFormatting',
+    component: () => import('../views/guides/JsonFormattingGuide.vue'),
+    meta: {
+      seo: seo(
+        'JSON Formatting Best Practices | Fast Toolkit',
+        'How to validate, format, minify, and compare JSON safely in API and logging workflows.',
+      ),
+    },
+  },
+  {
+    path: '/guides/base64-encoding-guide',
+    name: 'GuideBase64',
+    component: () => import('../views/guides/Base64Guide.vue'),
+    meta: {
+      seo: seo(
+        'Base64 Encoding Guide | Fast Toolkit',
+        'Understand what Base64 is, what it is not, and safe debugging patterns for encoded payloads.',
+      ),
+    },
+  },
+  {
+    path: '/guides/url-encoding-explained',
+    name: 'GuideUrlEncoding',
+    component: () => import('../views/guides/UrlEncodingGuide.vue'),
+    meta: {
+      seo: seo(
+        'URL Encoding Explained | Fast Toolkit',
+        'A practical guide to URL encoding, decoding, parsing, and avoiding double-encoding bugs.',
+      ),
+    },
+  },
+  {
+    path: '/guides/regex-for-developers',
+    name: 'GuideRegex',
+    component: () => import('../views/guides/RegexGuide.vue'),
+    meta: {
+      seo: seo(
+        'Regex for Developers | Fast Toolkit',
+        'Build safer regex patterns, test flags properly, and reduce catastrophic backtracking risks.',
+      ),
+    },
+  },
+  {
+    path: '/guides/csv-json-conversion',
+    name: 'GuideCsvJson',
+    component: () => import('../views/guides/CsvJsonGuide.vue'),
+    meta: {
+      seo: seo(
+        'CSV and JSON Conversion Guide | Fast Toolkit',
+        'Convert CSV and JSON reliably while preserving escaping rules and useful table structure.',
+      ),
+    },
+  },
+  {
+    path: '/guides/unix-timestamp-guide',
+    name: 'GuideTimestamp',
+    component: () => import('../views/guides/TimestampGuide.vue'),
+    meta: {
+      seo: seo(
+        'Unix Timestamp Guide | Fast Toolkit',
+        'Convert Unix seconds and milliseconds correctly, avoid timezone confusion, and build reliable timelines.',
+      ),
+    },
+  },
+  {
     path: '/about',
     name: 'About',
     component: About,
@@ -211,6 +291,28 @@ const routes = [
       seo: seo(
         'Privacy Policy | Fast Toolkit',
         'How Fast Toolkit handles analytics, ads, and your data. Tools run locally in your browser.',
+      ),
+    },
+  },
+  {
+    path: '/faq',
+    name: 'FAQ',
+    component: FAQ,
+    meta: {
+      seo: seo(
+        'FAQ | Fast Toolkit',
+        'Frequently asked questions about Fast Toolkit, privacy, browser support, and developer tools usage.',
+      ),
+    },
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact,
+    meta: {
+      seo: seo(
+        'Contact | Fast Toolkit',
+        'Contact Fast Toolkit for feedback, bug reports, feature requests, and privacy-related questions.',
       ),
     },
   },

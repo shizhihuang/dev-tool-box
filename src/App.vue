@@ -11,6 +11,7 @@
       <router-link to="/" class="logo">Dev Tool Box</router-link>
       <nav class="nav-links">
         <router-link to="/" exact-active-class="active">Tools</router-link>
+        <router-link to="/guides" active-class="active">Guides</router-link>
         <router-link to="/about" active-class="active">About</router-link>
         <router-link to="/faq" active-class="active">FAQ</router-link>
         <router-link to="/contact" active-class="active">Contact</router-link>
