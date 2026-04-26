@@ -13,9 +13,10 @@
     <section>
       <h2>Available Tools</h2>
       <ul>
-        <li><strong>JSON Formatter</strong> – Format and validate JSON with syntax highlighting. Paste messy JSON and get clean, readable output.</li>
+        <li><strong>JSON</strong> – Format, minify, sort keys, validate, and convert JSON objects to CSV.</li>
         <li><strong>Base64 Encode/Decode</strong> – Encode text to Base64 or decode Base64 back to plain text.</li>
-        <li><strong>URL Encode/Decode</strong> – Encode or decode URL-encoded strings for use in web development.</li>
+        <li><strong>URL</strong> – Encode, decode, and parse full URLs into components and query parameters.</li>
+        <li><strong>Regex Tester</strong> – Test patterns with flags and preview matches or replacements.</li>
       </ul>
     </section>
 
@@ -29,9 +30,10 @@
     </section>
 
     <section>
-      <h2>Contact</h2>
+      <h2>Contact &amp; help</h2>
       <p>
-        Questions or feedback? Reach out at
+        Visit our <router-link to="/contact">Contact</router-link> page or read the
+        <router-link to="/faq">FAQ</router-link>. You can also email
         <a href="mailto:hello@fasttoolkit.dev">hello@fasttoolkit.dev</a>.
       </p>
     </section>

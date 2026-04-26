@@ -2,11 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import PrivacyPolicy from '../views/PrivacyPolicy.vue'
 import About from '../views/About.vue'
+import FAQ from '../views/FAQ.vue'
+import Contact from '../views/Contact.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/privacy', name: 'Privacy', component: PrivacyPolicy },
   { path: '/about', name: 'About', component: About },
+  { path: '/faq', name: 'FAQ', component: FAQ },
+  { path: '/contact', name: 'Contact', component: Contact },
 ]
 
 const router = createRouter({
