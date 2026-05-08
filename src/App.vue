@@ -11,7 +11,10 @@
       <router-link to="/" class="logo">Dev Tool Box</router-link>
       <nav class="nav-links">
         <router-link to="/" exact-active-class="active">Tools</router-link>
+        <router-link to="/guides" active-class="active">Guides</router-link>
         <router-link to="/about" active-class="active">About</router-link>
+        <router-link to="/faq" active-class="active">FAQ</router-link>
+        <router-link to="/contact" active-class="active">Contact</router-link>
         <router-link to="/privacy" active-class="active">Privacy</router-link>
         <button class="theme-btn" @click="toggleTheme">
           {{ isDark ? 'Light Mode' : 'Dark Mode' }}

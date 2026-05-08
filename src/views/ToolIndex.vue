@@ -14,6 +14,21 @@
       </router-link>
     </section>
 
+    <section class="guides-section" aria-label="Learning guides">
+      <h2>Guides for real workflows</h2>
+      <p class="guides-lead">
+        Start with short tutorials when you need practical context, not just buttons.
+      </p>
+      <div class="guides-links">
+        <router-link to="/guides/json-formatting-best-practices">JSON formatting best practices</router-link>
+        <router-link to="/guides/base64-encoding-guide">Base64 encoding guide</router-link>
+        <router-link to="/guides/url-encoding-explained">URL encoding explained</router-link>
+        <router-link to="/guides/regex-for-developers">Regex for developers</router-link>
+        <router-link to="/guides/csv-json-conversion">CSV and JSON conversion</router-link>
+        <router-link to="/guides/unix-timestamp-guide">Unix timestamp guide</router-link>
+      </div>
+    </section>
+
     <article class="home-article" lang="en" aria-labelledby="home-article-title">
       <h2 id="home-article-title">What Fast Toolkit is</h2>
       <p>
@@ -151,6 +166,42 @@ const tools = [
 }
 
 .app.dark .card p {
+  color: #cbd5e1;
+}
+
+.guides-section {
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid #dfe6e9;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+.guides-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+.guides-lead {
+  margin-bottom: 10px;
+  color: #475569;
+}
+.guides-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px 14px;
+}
+.guides-links a {
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 0.93rem;
+}
+.guides-links a:hover {
+  text-decoration: underline;
+}
+.app.dark .guides-section {
+  border-color: #374151;
+  background: #111827;
+}
+.app.dark .guides-lead {
   color: #cbd5e1;
 }
 
