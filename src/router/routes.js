@@ -1,6 +1,3 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { applyRouteSeo } from '../utils/seo.js'
-import { trackPageView } from '../utils/analytics.js'
 import ToolIndex from '../views/ToolIndex.vue'
 import PrivacyPolicy from '../views/PrivacyPolicy.vue'
 import About from '../views/About.vue'
@@ -15,7 +12,8 @@ const seo = (title, description, overrides = {}) => ({
   canonical: overrides.canonical,
 })
 
-const routes = [
+/** Vue Router route table (also used by vite-ssg for static HTML generation). */
+export const routes = [
   {
     path: '/',
     name: 'Home',
@@ -215,18 +213,3 @@ const routes = [
     },
   },
 ]
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-  scrollBehavior() {
-    return { top: 0 }
-  },
-})
-
-router.afterEach((to) => {
-  applyRouteSeo(to)
-  trackPageView(to.fullPath)
-})
-
-export default router

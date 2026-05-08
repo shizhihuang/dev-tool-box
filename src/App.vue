@@ -26,7 +26,13 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { useHead } from '@unhead/vue'
+import { buildHeadFromRoute } from './utils/seo.js'
+
+const router = useRouter()
+useHead(computed(() => buildHeadFromRoute(router.currentRoute.value)))
 
 const isDark = ref(false)
 const BODY_DARK_CLASS = 'fasttoolkit-dark'
@@ -41,6 +47,7 @@ onMounted(() => {
 })
 
 watch(isDark, (v) => {
+  if (typeof document === 'undefined') return
   document.body.classList.toggle(BODY_DARK_CLASS, v)
   document.documentElement.classList.toggle(BODY_DARK_CLASS, v)
 })

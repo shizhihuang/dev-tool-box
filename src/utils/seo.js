@@ -1,47 +1,41 @@
 const SITE_ORIGIN = 'https://fasttoolkit.dev'
 const DEFAULT_TITLE = 'Fast Toolkit - Free Online Dev Tools'
 
-function setMeta(attrName, key, value) {
-  if (!value) return
-  let el = document.querySelector(`meta[${attrName}="${key}"]`)
-  if (!el) {
-    el = document.createElement('meta')
-    el.setAttribute(attrName, key)
-    document.head.appendChild(el)
-  }
-  el.setAttribute('content', value)
-}
-
 /**
- * Apply document title and meta tags from route.meta.seo
+ * Head payload for @unhead/vue — works in SSR (vite-ssg) and client.
  * @param {import('vue-router').RouteLocationNormalizedLoaded} route
  */
-export function applyRouteSeo(route) {
+export function buildHeadFromRoute(route) {
   const seo = route.meta?.seo
-  if (!seo) return
-
   const path = route.path || '/'
-  const canonical = seo.canonical || `${SITE_ORIGIN}${path === '/' ? '/' : path}`
+  const canonicalDefault = `${SITE_ORIGIN}${path === '/' ? '/' : path}`
 
-  document.title = seo.title || DEFAULT_TITLE
-
-  if (seo.description) {
-    setMeta('name', 'description', seo.description)
+  if (!seo) {
+    return {
+      title: DEFAULT_TITLE,
+      link: [{ rel: 'canonical', href: canonicalDefault }],
+    }
   }
 
-  setMeta('property', 'og:title', seo.ogTitle || seo.title || DEFAULT_TITLE)
-  setMeta('property', 'og:description', seo.ogDescription || seo.description || '')
-  setMeta('property', 'og:url', canonical)
-  setMeta('name', 'twitter:title', seo.twitterTitle || seo.title || DEFAULT_TITLE)
-  setMeta('name', 'twitter:description', seo.twitterDescription || seo.description || '')
+  const canonical = seo.canonical || canonicalDefault
+  const title = seo.title || DEFAULT_TITLE
 
-  let link = document.querySelector('link[rel="canonical"]')
-  if (!link) {
-    link = document.createElement('link')
-    link.setAttribute('rel', 'canonical')
-    document.head.appendChild(link)
+  return {
+    title,
+    meta: [
+      seo.description ? { name: 'description', content: seo.description } : null,
+      { property: 'og:type', content: 'website' },
+      { property: 'og:locale', content: 'en_US' },
+      { property: 'og:site_name', content: 'Fast Toolkit' },
+      { property: 'og:title', content: seo.ogTitle || title },
+      { property: 'og:description', content: seo.ogDescription || seo.description || '' },
+      { property: 'og:url', content: canonical },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: seo.twitterTitle || title },
+      { name: 'twitter:description', content: seo.twitterDescription || seo.description || '' },
+    ].filter(Boolean),
+    link: [{ rel: 'canonical', href: canonical }],
   }
-  link.setAttribute('href', canonical)
 }
 
 export { SITE_ORIGIN, DEFAULT_TITLE }
